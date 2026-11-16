@@ -3,6 +3,7 @@
 #include <string>
 #include <iomanip>
 #include <fstream>
+#include "Cheapest.h"
 #include "product.h"
 #include "addproduct.h"
 #include "sortByQuantity.h"
@@ -46,7 +47,7 @@ void AtsarguVerte(const std::vector<Product>& products) {
 }
 
 int main() {
-	std::ofstream outputFile("products.txt");
+    std::ofstream outputFile("products.txt");
 
     std::vector<Product> products =
     {
@@ -67,7 +68,7 @@ int main() {
     }
     else
     {
-		std::cout << "Nepavyko atidaryti failo products.txt\n";
+        std::cout << "Nepavyko atidaryti failo products.txt\n";
     }
 
     int choice = -1;
@@ -77,24 +78,28 @@ int main() {
         std::cout << "1. Show products\n";
         std::cout << "2. Show most expensive product\n";
         std::cout << "3. Add product\n";
-		std::cout << "4. Apply discount\n";
+		    std::cout << "4. Apply discount\n";
         std::cout << "5. Show stock value\n";
+        std::cout << "6. Show cheapest product\n";
         std::cout << "0. Exit\n";
         std::cout << "Choice: ";
         std::cin >> choice;
 
         switch (choice) {
+        case 1:
+            showProducts(products);
+            break;
         case 4:
-			pritaikytiNuolaida(products);
-			break;
+			      pritaikytiNuolaida(products);
+			      break;
         case 5:
             AtsarguVerte(products);
             break;
         case 2:
             showMostExpensiveProduct(products);
             break;
-        case 1:
-            showProducts(products);
+        case 6:
+            showCheapestProduct(products);
             break;
         case 3:
             AddProduct(products);
