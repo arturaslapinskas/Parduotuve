@@ -11,9 +11,9 @@ void AddProduct(vector<Product>& products) {
 	int quantity_new_product;
 	double cost_new_product;
 
+	cin.ignore(4092, '\n');
 	cout << "Add product: ";
 	getline(cin, new_product);
-	cin.ignore(4092, '\n');
 	cout << "Quantity: ";
 	cin >> quantity_new_product;
 	cout << "Cost: ";

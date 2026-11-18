@@ -16,7 +16,7 @@ void showProducts(const std::vector<Product>& products) {
         std::cout << i + 1 << ". "
             << std::left << std::setw(10) << products[i].name
             << std::fixed << std::setprecision(2) << products[i].price << " EUR"
-            << "   quantity: " << (products[i].quantity == 0 ? "IŠPARDUOTA" : std::to_string(products[i].quantity)) << lowQuantity << "\n";
+            << "quantity: " << (products[i].quantity == 0 ? "IŠPARDUOTA" : std::to_string(products[i].quantity)) << lowQuantity << "\n";
 		lowQuantity = "";
     }
 }
@@ -78,7 +78,7 @@ int main() {
         std::cout << "1. Show products\n";
         std::cout << "2. Show most expensive product\n";
         std::cout << "3. Add product\n";
-		    std::cout << "4. Apply discount\n";
+		std::cout << "4. Apply discount\n";
         std::cout << "5. Show stock value\n";
         std::cout << "6. Show cheapest product\n";
         std::cout << "0. Exit\n";
@@ -90,8 +90,8 @@ int main() {
             showProducts(products);
             break;
         case 4:
-			      pritaikytiNuolaida(products);
-			      break;
+			 pritaikytiNuolaida(products);
+			 break;
         case 5:
             AtsarguVerte(products);
             break;
