@@ -46,6 +46,20 @@ void AtsarguVerte(const std::vector<Product>& products) {
     std::cout << std::fixed << "Dabartine atsargu verte: " << std::setprecision(2) << galutineKaina << " EUR" << std::endl;
 }
 
+void MazosAtsargos(const std::vector<Product>& products) {
+    int kiekis;
+
+    std::cout << "Enter quantity: ";
+
+    cin >> kiekis;
+
+    for (size_t i = 0; i < products.size(); i++) {
+        if (kiekis > products[i].quantity) std::cout << products[i].name << " " << products[i].quantity << std::endl;
+
+    }
+}
+    
+
 int main() {
     std::ofstream outputFile("products.txt");
 
@@ -81,6 +95,7 @@ int main() {
 		    std::cout << "4. Apply discount\n";
         std::cout << "5. Show stock value\n";
         std::cout << "6. Show cheapest product\n";
+        std::cout << "7. Show products with less quantity\n";
         std::cout << "0. Exit\n";
         std::cout << "Choice: ";
         std::cin >> choice;
@@ -106,6 +121,9 @@ int main() {
             break;
         case 0:
             std::cout << "Bye!\n";
+            break;
+        case 7:
+            MazosAtsargos(products);
             break;
         default:
             std::cout << "Unknown option.\n";
