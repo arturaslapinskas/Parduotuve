@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <algorithm>
 #include <vector>
 #include <string>
 #include <iomanip>
@@ -8,6 +9,7 @@
 #include "addproduct.h"
 #include "sortByQuantity.h"
 #include "dicount.h"
+#include "changeprice.h"
 
 void showProducts(const std::vector<Product>& products) {
     std::string lowQuantity = "";
@@ -16,7 +18,7 @@ void showProducts(const std::vector<Product>& products) {
         std::cout << i + 1 << ". "
             << std::left << std::setw(10) << products[i].name
             << std::fixed << std::setprecision(2) << products[i].price << " EUR"
-            << "   quantity: " << (products[i].quantity == 0 ? "IŠPARDUOTA" : std::to_string(products[i].quantity)) << lowQuantity << "\n";
+            << "quantity: " << (products[i].quantity == 0 ? "IŠPARDUOTA" : std::to_string(products[i].quantity)) << lowQuantity << "\n";
 		lowQuantity = "";
     }
 }
@@ -60,6 +62,20 @@ void MazosAtsargos(const std::vector<Product>& products) {
 }
     
 
+void sortProducts(std::vector<Product>& products) {
+    for (size_t i = 0; i < products.size() - 1;i++) {
+        for (size_t j = i + 1; j < products.size();j++) {
+            if (products[i].price > products[j].price) {
+                std::swap(products[i], products[j]);
+            }
+        }
+    }
+    for (size_t i = 0; i < products.size();i++) {
+        std::cout << i + 1 << ". "
+            << std::left << std::setw(10) << products[i].name
+            << std::fixed << std::setprecision(2) << products[i].price << " EUR\n";
+    }
+}
 int main() {
     std::ofstream outputFile("products.txt");
 
@@ -92,10 +108,12 @@ int main() {
         std::cout << "1. Show products\n";
         std::cout << "2. Show most expensive product\n";
         std::cout << "3. Add product\n";
-		    std::cout << "4. Apply discount\n";
+		std::cout << "4. Apply discount\n";
         std::cout << "5. Show stock value\n";
         std::cout << "6. Show cheapest product\n";
-        std::cout << "7. Show products with less quantity\n";
+        std::cout << "9. Show products with less quantity\n";
+        std::cout << "7. Show sorted products\n";
+        std::cout << "8. Change product price\n";
         std::cout << "0. Exit\n";
         std::cout << "Choice: ";
         std::cin >> choice;
@@ -105,8 +123,8 @@ int main() {
             showProducts(products);
             break;
         case 4:
-			      pritaikytiNuolaida(products);
-			      break;
+			 pritaikytiNuolaida(products);
+			 break;
         case 5:
             AtsarguVerte(products);
             break;
@@ -119,10 +137,16 @@ int main() {
         case 3:
             AddProduct(products);
             break;
+        case 7:
+            sortProducts(products);
+            break;
+          case 8:
+            changePrice(products);
+            break;
         case 0:
             std::cout << "Bye!\n";
             break;
-        case 7:
+        case 9:
             MazosAtsargos(products);
             break;
         default:
