@@ -8,6 +8,7 @@
 #include "addproduct.h"
 #include "sortByQuantity.h"
 #include "dicount.h"
+#include "changeprice.h"
 
 void showProducts(const std::vector<Product>& products) {
     std::string lowQuantity = "";
@@ -81,6 +82,7 @@ int main() {
 		std::cout << "4. Apply discount\n";
         std::cout << "5. Show stock value\n";
         std::cout << "6. Show cheapest product\n";
+        std::cout << "7. Change product price\n";
         std::cout << "0. Exit\n";
         std::cout << "Choice: ";
         std::cin >> choice;
@@ -103,6 +105,9 @@ int main() {
             break;
         case 3:
             AddProduct(products);
+            break;
+        case 7:
+            changePrice(products);
             break;
         case 0:
             std::cout << "Bye!\n";
