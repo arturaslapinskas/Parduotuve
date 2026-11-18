@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <algorithm>
 #include <vector>
 #include <string>
 #include <iomanip>
@@ -45,7 +46,20 @@ void AtsarguVerte(const std::vector<Product>& products) {
     }
     std::cout << std::fixed << "Dabartine atsargu verte: " << std::setprecision(2) << galutineKaina << " EUR" << std::endl;
 }
-
+void sortProducts(std::vector<Product>& products) {
+    for (size_t i = 0; i < products.size() - 1;i++) {
+        for (size_t j = i + 1; j < products.size();j++) {
+            if (products[i].price > products[j].price) {
+                std::swap(products[i], products[j]);
+            }
+        }
+    }
+    for (size_t i = 0; i < products.size();i++) {
+        std::cout << i + 1 << ". "
+            << std::left << std::setw(10) << products[i].name
+            << std::fixed << std::setprecision(2) << products[i].price << " EUR\n";
+    }
+}
 int main() {
     std::ofstream outputFile("products.txt");
 
@@ -78,9 +92,10 @@ int main() {
         std::cout << "1. Show products\n";
         std::cout << "2. Show most expensive product\n";
         std::cout << "3. Add product\n";
-		    std::cout << "4. Apply discount\n";
+		std::cout << "4. Apply discount\n";
         std::cout << "5. Show stock value\n";
         std::cout << "6. Show cheapest product\n";
+        std::cout << "7. Show sorted products\n";
         std::cout << "0. Exit\n";
         std::cout << "Choice: ";
         std::cin >> choice;
@@ -103,6 +118,9 @@ int main() {
             break;
         case 3:
             AddProduct(products);
+            break;
+        case 7:
+            sortProducts(products);
             break;
         case 0:
             std::cout << "Bye!\n";
