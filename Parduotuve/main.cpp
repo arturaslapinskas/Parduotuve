@@ -9,6 +9,7 @@
 #include "addproduct.h"
 #include "sortByQuantity.h"
 #include "dicount.h"
+#include "changeprice.h"
 
 void showProducts(const std::vector<Product>& products) {
     std::string lowQuantity = "";
@@ -17,7 +18,7 @@ void showProducts(const std::vector<Product>& products) {
         std::cout << i + 1 << ". "
             << std::left << std::setw(10) << products[i].name
             << std::fixed << std::setprecision(2) << products[i].price << " EUR"
-            << "   quantity: " << (products[i].quantity == 0 ? "IŠPARDUOTA" : std::to_string(products[i].quantity)) << lowQuantity << "\n";
+            << "quantity: " << (products[i].quantity == 0 ? "IŠPARDUOTA" : std::to_string(products[i].quantity)) << lowQuantity << "\n";
 		lowQuantity = "";
     }
 }
@@ -96,6 +97,7 @@ int main() {
         std::cout << "5. Show stock value\n";
         std::cout << "6. Show cheapest product\n";
         std::cout << "7. Show sorted products\n";
+        std::cout << "8. Change product price\n";
         std::cout << "0. Exit\n";
         std::cout << "Choice: ";
         std::cin >> choice;
@@ -105,8 +107,8 @@ int main() {
             showProducts(products);
             break;
         case 4:
-			      pritaikytiNuolaida(products);
-			      break;
+			 pritaikytiNuolaida(products);
+			 break;
         case 5:
             AtsarguVerte(products);
             break;
@@ -121,6 +123,9 @@ int main() {
             break;
         case 7:
             sortProducts(products);
+            break;
+          case 8:
+            changePrice(products);
             break;
         case 0:
             std::cout << "Bye!\n";
